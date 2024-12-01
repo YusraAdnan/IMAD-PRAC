@@ -46,5 +46,11 @@
             android:textColor="#333333"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Back"/>
     </LinearLayout>
 </ScrollView>

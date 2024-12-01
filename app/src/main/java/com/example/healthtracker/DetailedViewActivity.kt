@@ -1,6 +1,8 @@
 package com.example.healthtracker
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -15,6 +17,7 @@ class DetailedViewActivity : AppCompatActivity() {
         val exerciseMinutes = intent.getIntArrayExtra("exerciseMinutes") ?: IntArray(7)
         val sleepHours = intent.getIntArrayExtra("sleepHours") ?: IntArray(7)
 
+        val backButton = findViewById<Button>(R.id.backButton)
         val additionalText = findViewById<TextView>(R.id.additionalText)
 
         val detailsText = findViewById<TextView>(R.id.detailsText)
@@ -36,5 +39,12 @@ class DetailedViewActivity : AppCompatActivity() {
             - Day with the highest water intake: Day $highestWaterDay
             - Average sleep duration: ${"%.2f".format(averageSleep)} hours
         """.trimIndent()
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // Close the current activity
+
+        }
     }
 }
