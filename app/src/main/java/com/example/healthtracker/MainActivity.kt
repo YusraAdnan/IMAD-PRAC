@@ -10,11 +10,12 @@ import com.example.healthtracker.DetailedViewActivity
 import com.example.healthtracker.R
 
 class MainActivity : AppCompatActivity() {
+    
     // Parallel arrays to track user inputs
     private val waterIntake = IntArray(7) { 0 }
     private val exerciseMinutes = IntArray(7) { 0 }
     private val sleepHours = IntArray(7) { 0 }
-    private var currentDay = 0
+    private var currentDay = 0 // Tracks which day the user is inputting data for
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val viewDetailsButton = findViewById<Button>(R.id.viewDetailsButton)
 
         saveButton.setOnClickListener {
-            // Save inputs for the current day
+            // Save inputs in the corresponding arrays for the current day
             waterIntake[currentDay] = waterInput.text.toString().toIntOrNull() ?: 0
             exerciseMinutes[currentDay] = exerciseInput.text.toString().toIntOrNull() ?: 0
             sleepHours[currentDay] = sleepInput.text.toString().toIntOrNull() ?: 0
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
             // Move to the next day (looping back after Day 7)
             currentDay = (currentDay + 1) % 7
-            clearFields(waterInput, exerciseInput, sleepInput)
+            
         }
 
         clearButton.setOnClickListener {

@@ -8,16 +8,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Section Title -->
+        <TextView
+            android:text="Habit Details"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp" />
+
+        <!-- Habit Details -->
         <TextView
             android:id="@+id/detailsText"
             android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="#333333"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp" />
 
+        <!-- Section Title -->
+        <TextView
+            android:text="Additional Information"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp" />
+
+        <!-- Additional Information -->
         <TextView
             android:id="@+id/additionalText"
             android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="#333333"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
