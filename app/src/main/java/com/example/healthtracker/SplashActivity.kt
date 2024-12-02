@@ -14,5 +14,8 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+        findViewById<Button>(R.id.exitButton).setOnClickListener {
+            finishAffinity()
+        }
     }
 }
