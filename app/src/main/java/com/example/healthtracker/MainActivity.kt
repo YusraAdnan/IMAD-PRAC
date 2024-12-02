@@ -31,23 +31,25 @@ class MainActivity : AppCompatActivity() {
         val clearButton = findViewById<Button>(R.id.clearButton)
         val viewDetailsButton = findViewById<Button>(R.id.viewDetailsButton)
 
-        // Set the current date as default
+        // Sets the current date as default
         val calendar = Calendar.getInstance()
         updateDateInView(dateTextView, calendar)
 
         pickDateButton.setOnClickListener {
-            // Show DatePickerDialog to select a date
-            DatePickerDialog(
-                this,
-                { _, year, month, dayOfMonth ->
-                    // Update the date in the TextView
-                    calendar.set(year, month, dayOfMonth)
-                    updateDateInView(dateTextView, calendar)
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
+
+            // This allows to show DatePickerDialog to select a date
+            pickDateButton.setOnClickListener {
+                DatePickerDialog(
+                    this,
+                    { _, year, month, dayOfMonth ->
+                        calendar.set(year, month, dayOfMonth)  // Update the calendar object with the selected date
+                        updateDateInView(dateTextView, calendar)  // Update the TextView with the formatted date
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+                ).show()
+            }
         }
 
         saveButton.setOnClickListener {
