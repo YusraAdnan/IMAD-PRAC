@@ -46,7 +46,7 @@ class DetailedViewActivity : AppCompatActivity() {
 
         detailsText.text = details.toString()
         backButton.setOnClickListener {
-            finish()
+            finish() //simply closes the current activity and returns to the previous activity, this prevents the data in the arrays from being removed when moving between screens, as we do not open a new instance of the main screen
         }
 
 
