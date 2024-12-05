@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Date Picker Section -->
     <TextView
         android:id="@+id/dateTextView"
         android:text="Select a date"
@@ -20,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp" />
 
-    <!-- Water Intake Input -->
+
     <EditText
         android:id="@+id/waterInput"
         android:hint="Water Intake (cups)"
@@ -28,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Exercise Input -->
+
     <EditText
         android:id="@+id/exerciseInput"
         android:hint="Exercise (minutes)"
@@ -36,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Sleep Input -->
+
     <EditText
         android:id="@+id/sleepInput"
         android:hint="Sleep (hours)"
@@ -44,21 +43,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Save Button -->
     <Button
         android:id="@+id/saveButton"
         android:text="Save Details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Clear Button -->
     <Button
         android:id="@+id/clearButton"
         android:text="Clear Data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- View Details Button -->
     <Button
         android:id="@+id/viewDetailsButton"
         android:text="View Details"

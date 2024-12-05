@@ -12,16 +12,17 @@ class DetailedViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_view)
 
-        // Retrieve arrays passed from MainActivity
+        // Retrieve arrays passed from MainActivity. This is how we gain access to information passed from other screens
         val waterIntake = intent.getIntArrayExtra("waterIntake") ?: IntArray(7)
         val exerciseMinutes = intent.getIntArrayExtra("exerciseMinutes") ?: IntArray(7)
         val sleepHours = intent.getIntArrayExtra("sleepHours") ?: IntArray(7)
         val dates = intent.getStringArrayExtra("dates") ?: arrayOfNulls<String>(7)
         val backButton = findViewById<Button>(R.id.backButton)
+        val additionalText = findViewById<TextView>(R.id.additionalText)
 
         val detailsText = findViewById<TextView>(R.id.detailsText)
 
-        // Create a table-like format for displaying details
+        // This helps create a table-like format for displaying details
         val details = StringBuilder()
         details.append(
             String.format(
@@ -31,7 +32,7 @@ class DetailedViewActivity : AppCompatActivity() {
         )
         details.append("------------------------------------------------------------\n")
         for (i in 0 until 7) {
-            val date = dates[i] ?: "N/A" // Handle cases where no date was chosen
+            val date = dates[i] ?: "N/A" // This handles cases where no date was chosen
             details.append(
                 String.format(
                     "%-15s%-15s%-15s%-15s\n",
@@ -45,9 +46,17 @@ class DetailedViewActivity : AppCompatActivity() {
 
         detailsText.text = details.toString()
         backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // Close the DetailedViewActivity to prevent going back to it
+            finish()
         }
+
+
+        val highestWaterDay = waterIntake.indices.maxByOrNull { waterIntake[it] }?.plus(1) ?: "None"
+        val averageSleep = sleepHours.average()
+
+        additionalText.text = """
+            Additional Information:
+            - Day with the highest water intake: Day $highestWaterDay
+            - Average sleep duration: ${"%.2f".format(averageSleep)} hours
+        """.trimIndent()
     }
 }

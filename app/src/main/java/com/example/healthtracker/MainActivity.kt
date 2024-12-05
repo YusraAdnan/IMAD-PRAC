@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                     this,
                     { _, year, month, dayOfMonth ->
                         calendar.set(year, month, dayOfMonth)  // Update the calendar object with the selected date
-                        updateDateInView(dateTextView, calendar)  // Update the TextView with the formatted date
+                        updateDateInView(dateTextView, calendar)
                     },
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
@@ -53,25 +53,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            // Save user inputs for the selected day
-            waterIntake[currentDay] = waterInput.text.toString().toIntOrNull() ?: 0
-            exerciseMinutes[currentDay] = exerciseInput.text.toString().toIntOrNull() ?: 0
-            sleepHours[currentDay] = sleepInput.text.toString().toIntOrNull() ?: 0
-            dates[currentDay] = dateTextView.text.toString() // Save the selected date
+            if (waterInput.text.isNullOrBlank() || exerciseInput.text.isNullOrBlank() || sleepInput.text.isNullOrBlank()) {
+                //Error handling that warns if any input field is empty. Prevents from adding null items in the array
+                Toast.makeText(this, "Please fill out all fields before saving.", Toast.LENGTH_SHORT).show()
+            } else {
+                // Save user inputs for the selected day only if fields are not empty
+                waterIntake[currentDay] = waterInput.text.toString().toIntOrNull() ?: 0
+                exerciseMinutes[currentDay] = exerciseInput.text.toString().toIntOrNull() ?: 0
+                sleepHours[currentDay] = sleepInput.text.toString().toIntOrNull() ?: 0
+                dates[currentDay] = dateTextView.text.toString() // Save the selected date
 
-            Toast.makeText(this, "Details Saved for Day ${currentDay + 1}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Details Saved for Day ${currentDay + 1}", Toast.LENGTH_SHORT).show()
 
-            // Move to the next day (cycling back to Day 1 after Day 7)
-            currentDay = (currentDay + 1) % 7
+                // Move to the next day (cycling back to Day 1 after Day 7)
+                currentDay = (currentDay + 1) % 7
+            }
         }
 
+
         clearButton.setOnClickListener {
-            // Clear input fields
             clearFields(waterInput, exerciseInput, sleepInput)
         }
 
         viewDetailsButton.setOnClickListener {
-            // Navigate to DetailedViewActivity, passing the arrays
+            // Navigate to DetailedViewActivity, passing the arrays to the screen
             val intent = Intent(this, DetailedViewActivity::class.java)
             intent.putExtra("waterIntake", waterIntake)
             intent.putExtra("exerciseMinutes", exerciseMinutes)
@@ -87,8 +92,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearFields(waterInput: EditText, exerciseInput: EditText, sleepInput: EditText) {
-        waterInput.text.clear()
-        exerciseInput.text.clear()
-        sleepInput.text.clear()
+        // This check on clears the text view if there is text in it
+        if (!waterInput.text.isNullOrBlank()) {
+            waterInput.text.clear()
+        }
+        if (!exerciseInput.text.isNullOrBlank()) {
+            exerciseInput.text.clear()
+        }
+        if (!sleepInput.text.isNullOrBlank()) {
+            sleepInput.text.clear()
+        }
+        Toast.makeText(this, "Input fields cleared", Toast.LENGTH_SHORT).show()
     }
+
 }
