@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearFields(waterInput: EditText, exerciseInput: EditText, sleepInput: EditText) {
-        // This check on clears the text view if there is text in it
+        // This check only clears the text view if there is text in it
         if (!waterInput.text.isNullOrBlank()) {
             waterInput.text.clear()
         }
